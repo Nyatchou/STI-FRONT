@@ -1,0 +1,58 @@
+input {
+  height: 46px;
+}
+
+.background-des {
+  background-color: rgba(255, 255, 255, 0.918);
+  padding-top: 150px;
+  padding-bottom: 130px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+.form-card {
+  margin-top: 200px;
+  width: 500px;
+  padding: 50px;
+  box-shadow: 2px 2px 2px 2px rgb(117, 116, 116);
+  margin: auto;
+  background-color: white;
+}
+
+@media (max-width: 420px) {
+  .form-card {
+    margin-top: 200px;
+    width: 300px;
+    padding: 10px;
+    box-shadow: 2px 2px 2px 2px rgb(117, 116, 116);
+    margin: auto;
+    background-color: white;
+  }
+}
+
+
+.small-link {
+  color: #2b297c;
+  font-size: 13px;
+}
+
+.error-label {
+  padding-left: 10px;
+  color: rgb(255, 38, 0);
+  font-size: 14px;
+}
+
+.red-border {
+  border: 1px rgb(231, 58, 58) solid;
+  box-shadow: 2px 2px 2px #ef5350;
+}
+
+.btn-blue {
+  background-color: rgb(40, 29, 192);
+  color: white;
+  width: 80%;
+  text-transform: uppercase;
+}
+
+.small-link:hover {
+  color: #3336cc;
+}

@@ -1,0 +1,10 @@
+<div style="width:100%">
+    <a (click)="nodeClicked = !nodeClicked" [ngClass]="{'s-text13': true, 'tree-item-clicked': nodeClicked}">{{nodeTree.name}} &nbsp;&nbsp;&nbsp;
+    <i [ngClass]="nodeClicked ? 'fas fa-chevron-up' : 'fas fa-chevron-down'" *ngIf="nodeTree.subsections"></i>
+    </a>
+    <ul class="tree-group" *ngIf="nodeClicked">
+        <li class="tree-item" *ngFor="let course of nodeTree.subsections">
+            <app-course-tree [nodeTree]="course"></app-course-tree>
+        </li>
+    </ul>
+</div>

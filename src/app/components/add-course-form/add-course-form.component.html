@@ -1,0 +1,34 @@
+<div class="background-des">
+    <div class="form-card">
+        <h1>Ajout d'un cours à la plateforme</h1>
+        <form [formGroup]="courseAddForm">
+            <div class="form-group m-t-20 mb-5">
+                <input type="text" formControlName="name" style="height: 50px" class="form-control"
+                    [ngClass]="{'red-border' : courseAddForm.get('name').invalid && courseAddForm.get('name').dirty}"
+                    placeholder="Nom du cours" />
+                <div *ngIf="courseAddForm.get('name').invalid && courseAddForm.get('name').dirty" class="error-label">
+                    <div
+                        *ngIf="(courseAddForm.get('name').hasError('pattern') || courseAddForm.get('name').hasError('required')) && courseAddForm.get('name').dirty">
+                        <i class="fa fa-exclamation-circle"></i> Ce champ ne doit pas être vide !
+                    </div>
+                </div>
+            </div>
+            <div class="form-group m-t-20 mb-5">
+                <textarea rows="4" formControlName="textDescription" class="form-control" placeholder="Texte descriptif du cours"></textarea>
+            </div>
+
+            <div class="form-group mb-5">
+                <select class="browser-default custom-select" formControlName="domain">
+                    <option value="" disabled selected> Selectionnez le domaine</option>
+                    <option *ngFor="let domain of domainsList" value="domain.id">{{domain.name}}</option>
+                </select>
+            </div>
+
+            <div class="form-group text-center m-t-40">
+                <button [disabled]="courseAddForm.invalid" class="btn btn-blue btn-flat" (click)="submit()">
+                    Valider
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

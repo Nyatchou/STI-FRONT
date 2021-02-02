@@ -1,0 +1,43 @@
+select {
+  color: gray;
+  border: 1px #ced4da solid;
+  border-radius: 4px;
+  width: 97%;
+  height: 46px;
+}
+
+mat-form-field {
+  width: 100%;
+  float: left;
+}
+
+.field-icon {
+  float: right;
+  margin-right: 5px;
+  margin-top: -29px;
+  position: relative;
+  z-index: 2;
+}
+
+.profil {
+  border: 1px solid #ced4da;
+  border-radius: 10px;
+  color: #9933cc;
+}
+
+/* #profil {
+  display: none;
+} */
+
+input {
+  height: 46px;
+}
+
+h1 {
+  font-weight: 400;
+  text-align: center;
+  text-transform: uppercase;
+  color: rgb(7, 7, 87);
+  margin-bottom: 50px;
+}
+

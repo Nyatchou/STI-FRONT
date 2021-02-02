@@ -1,0 +1,68 @@
+<div class="background-des">
+    <div class="form-card">
+        <h1>Ajout d'une partie à un chapitre de la plateforme</h1>
+        <form [formGroup]="partChapterForm">
+            <div class="form-group m-t-20 mb-5">
+                <!-- <label for="username">Username</label> -->
+                <!-- <fa-icon [icon]="iconUser"> </fa-icon>  -->
+                <input type="text" formControlName="title" style="height: 50px" class="form-control"
+                    [ngClass]="{'red-border' : partChapterForm.get('title').invalid && partChapterForm.get('title').dirty}"
+                    placeholder="Nom du Domaine" />
+                <div *ngIf="partChapterForm.get('title').invalid && partChapterForm.get('title').dirty"
+                    class="error-label">
+                    <div
+                        *ngIf="(partChapterForm.get('title').hasError('pattern') || partChapterForm.get('title').hasError('required')) && partChapterForm.get('title').dirty">
+                        <i class="fa fa-exclamation-circle"></i> Ce champ ne doit pas être vide !
+                    </div>
+                </div>
+            </div>
+            <div class="form-group m-t-20 mb-5">
+                <textarea rows="4" formControlName="textContent" class="form-control"
+                    [ngClass]="{'red-border' : partChapterForm.get('textContent').invalid && partChapterForm.get('textContent').dirty}"
+                    placeholder="Contenu"></textarea>
+
+                <div *ngIf="partChapterForm.get('textContent').invalid && partChapterForm.get('textContent').dirty"
+                    class="error-label">
+                    <div
+                        *ngIf="(partChapterForm.get('textContent').hasError('pattern') || partChapterForm.get('textContent').hasError('required')) && partChapterForm.get('textContent').dirty">
+                        <i class="fa fa-exclamation-circle"></i> Ce champ ne doit pas être vide !
+                    </div>
+                </div>
+            </div>
+            <div class="form-group mb-5">
+                <select class="browser-default custom-select" (change)="onChangeCourse($event)" >
+                    <option value="" disabled selected> Selectionnez le cours</option>
+                    <option *ngFor="let course of coursesList" value="course.id">{{course.name}}</option>
+                </select>
+            </div>
+            <!-- <div class="input-group my-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
+                </div>
+                <div class="custom-file">
+                    <input type="file" formControlName="image" class="custom-file-input"
+                        (onchange)="onFileChange($event, 'image')" id="inputGroupFile01"
+                        aria-describedby="inputGroupFileAddon01"
+                        [ngClass]="{'red-border' : partChapterForm.get('image').invalid && partChapterForm.get('image').dirty }">
+
+                    <label class="custom-file-label" for="inputGroupFile01">Choisir une image</label>
+                </div>
+            </div> -->
+            <div class="form-group">
+                <input type="file" class="form-control" (change)="onFileChange($event)">
+            </div>
+
+            <div class="form-group mb-5">
+                <select class="browser-default custom-select" formConrolName="chapter" >
+                    <option value="" disabled selected> Selectionnez le chapitre</option>
+                    <option *ngFor="let chapter of chaptersList" value="chapter.id">{{chapter.name}}</option>
+                </select>
+            </div>
+            <div class="form-group text-center m-t-40">
+                <button [disabled]="partChapterForm.invalid" class="btn btn-blue btn-flat" (click)="submit()">
+                    Valider
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

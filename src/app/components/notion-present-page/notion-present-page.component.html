@@ -1,0 +1,56 @@
+
+<div class="container m-t-20" *ngIf="datasLoaded">
+    <div class="row">
+        <div class="col-lg-8 col-md-8 col-sm-8">
+            <div class="card-presentation">
+                <h2 class="title">
+                   Notion: {{notionDetails.title}}
+                </h2>
+                <div class="full-text">
+                    {{notionDetails.text_content}}
+                </div>
+            </div>
+            
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-4">
+            <div class="card-video-presentation">
+                <h2 class="video-title">
+                    Video descriptive
+                </h2>
+                <div style="box-shadow: 3px 3px 3px 3px grey;">
+                    <video height="100%" width="100%" controls>
+                        <source src="{{videoFileUrl}}" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="container">
+            <h4 class="m-b-15" style="font-style: italic; font-weight:bold; font-size: 16px; font-family: Montserrat-Bold;"> Document(s) portant sur <span
+                    style="font-style: italic; font-weight: bold;">{{notionDetails.title}}</span> </h4>
+            <div class="row">
+                <div class="col-md-6" *ngFor="let file in notionDetails.files_ressources">
+                    <div *ngIf="file.ressource_type === 'document'">
+                        <a href="{{file.ressource_file}}">Télécharger </a>
+                    </div>
+                </div>
+                <div style="height: 50px; margin-left: 20px;" *ngIf="hasDocumentFile" >
+                    Aucun document disponible !
+                </div>
+            </div>
+
+            <h4 class="m-b-15" style="font-style: italic; font-weight:bold; font-size: 16px; font-family: Montserrat-Bold"> Quelques liens que vous pouvez visiter </h4>
+            <div class="row">
+                <div class="col-md-6" *ngFor="let url in notionDetails.urls_ressources">
+                    <a>{{url.url}}</a>
+                </div>
+                <div style="height: 50px; margin-left: 20px;" *ngIf="hasURLFile" >
+                    <p>Aucune url disponible !</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

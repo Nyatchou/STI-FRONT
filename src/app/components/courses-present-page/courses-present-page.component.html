@@ -1,0 +1,18 @@
+<div class="container">
+    <div class="title-domain">
+        <h1>{{domainName}}</h1>
+    </div>
+    <div class="row m-t-15 m-b-20">
+        <div class="col-lg-3 col-md-3 col-sm-3">
+            <div class="pretty-box">
+                Bienvenue dans la partie réservée au domaine {{domainName}}. Vous avez à droite la liste des cours qui sont disponibles dans cette rubrique.
+            </div>
+        </div>
+        <div class="col-lg-9 col-md-9 col-sm-9">
+            <div>
+                <app-courses-group [coursesList]="coursesList" [imageDomainUrl]="imageDomainUrl"
+                    [domainName]="domainName"></app-courses-group>
+            </div>
+        </div>
+    </div>
+</div>

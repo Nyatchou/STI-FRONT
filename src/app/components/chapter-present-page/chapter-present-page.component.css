@@ -1,0 +1,33 @@
+.chapter-title{
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-weight: bold;
+    text-align: center;
+    font-size: 22px;
+    margin-bottom: 20px;
+}
+
+.part-title{
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-weight: bold;
+    text-align: center;
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.full-text{
+    font-family: Montserrat-Regular;
+    font-size: 15px;
+    word-wrap: break-word;
+}
+
+.card-video-presentation{
+    height: 600px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+}
+
+.card-presentation{
+    margin-top: 20px;
+}

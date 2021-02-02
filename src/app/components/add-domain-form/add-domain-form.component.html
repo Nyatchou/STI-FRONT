@@ -1,0 +1,42 @@
+<div class="background-des">
+    <div class="form-card">
+        <h1>Ajout d'un domaine d'etude à la plateforme</h1>
+        <form [formGroup]="domainForm">
+            <div class="form-group m-t-20 mb-5">
+                <!-- <label for="username">Username</label> -->
+                <!-- <fa-icon [icon]="iconUser"> </fa-icon>  -->
+                <input type="text" formControlName="name" style="height: 50px" class="form-control"
+                    [ngClass]="{'red-border' : domainForm.get('name').invalid && domainForm.get('name').dirty}"
+                    placeholder="Nom du Domaine" />
+                <div *ngIf="domainForm.get('name').invalid && domainForm.get('name').dirty" class="error-label">
+                    <div
+                        *ngIf="(domainForm.get('name').hasError('pattern') || domainForm.get('name').hasError('required')) && domainForm.get('name').dirty">
+                        <i class="fa fa-exclamation-circle"></i> Ce champ ne doit pas être vide !
+                    </div>
+                </div>
+            </div>
+
+            <!-- <div class="input-group my-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
+                </div>
+                <div class="custom-file">
+                    <input type="file" formControlName="image" class="custom-file-input"
+                        (onchange)="onFileChange($event, 'image')" id="inputGroupFile01"
+                        aria-describedby="inputGroupFileAddon01"
+                        [ngClass]="{'red-border' : domainForm.get('image').invalid && domainForm.get('image').dirty }">
+
+                    <label class="custom-file-label" for="inputGroupFile01">Choisir une image</label>
+                </div>
+            </div> -->
+            <div class="form-group">
+                <input type="file" class="form-control" (change)="onFileChange($event)">
+            </div>
+            <div class="form-group text-center m-t-40">
+                <button [disabled]="domainForm.invalid" class="btn btn-blue btn-flat" (click)="submit()">
+                    Valider
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

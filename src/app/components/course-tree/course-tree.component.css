@@ -1,0 +1,22 @@
+.tree-item :hover{
+    /* background-color: rgb(13, 13, 104); */
+}
+.tree-item-clicked{
+    /* background-color: rgb(13, 13, 104);   */
+}
+
+.tree-group{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.tree-item{
+    position: relative;
+    display: block;
+    text-align: left;
+    margin-top: 5px;
+    height: 40px;
+    width: 100%;
+}
+
