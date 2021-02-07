@@ -1,0 +1,12 @@
+<div class="radios-group">
+  <label class="custom-control-label" for="groupQuestions">{{question}}</label>
+
+  <div class="custom-control custom-radio" *ngFor="let option of options">
+    <input type="radio" class="custom-control-input" [value]="option.prop" [(ngModel)]="selectedAnswer"
+      [id]="option.labelProp" name="groupQuestions">
+    <label class="custom-control-label" [for]="option.labelProp">{{option.prop}}</label>
+  </div>
+  <div>
+    <button class="btn btn-rounded-blue">Soumettre</button>
+  </div>
+</div>

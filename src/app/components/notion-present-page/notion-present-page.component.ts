@@ -21,16 +21,16 @@ export class NotionPresentPageComponent implements OnInit {
     this.notionId = this.activatedRoute.snapshot.paramMap.get('id');
     this.adminActionsService.getExtendNotion(this.notionId).subscribe((notionDets) => {
       this.notionDetails = notionDets;
-      this.datasLoaded = true;
-      console.log(notionDets);
       for (const file of this.notionDetails.files_ressources){
         if (file.ressource_type === 'video'){
           this.videoFileUrl = file.ressource_file;
           break;
         }
       }
-      this.hasDocumentFile = this.notionDetails.files_ressources.find((val) => val.ressource_type === 'document') !== -1;
+      this.hasDocumentFile = this.notionDetails.files_ressources.findIndex((val) => val.ressource_type === 'document') !== -1;
       this.hasURLFile = this.notionDetails.urls_ressources.length !== 0;
+      this.datasLoaded = true;
+
     });
 
   }

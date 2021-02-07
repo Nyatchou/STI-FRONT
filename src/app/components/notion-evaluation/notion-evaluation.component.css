@@ -1,0 +1,45 @@
+.radios-group{
+    font-family: Montserrat-Regular;
+    font-size: 15px;
+    margin: 15px 30px;
+}
+
+.btn-rounded-blue{
+    color: white;
+    font-weight: 500;
+    background-color: rgb(5, 5, 85);
+    border-radius: 20px;
+    padding: 10px 20px 10px 20px;
+    float: right;
+}
+
+.fa-check{
+    color: rgb(21, 150, 21);
+}
+
+.fa-times{
+    color: rgb(211, 19, 19);
+}
+
+.bad-answer{
+    background-color: rgb(247, 129, 129);
+    color: rgb(211, 19, 19);
+    box-shadow: 1px 0px rgb(247, 129, 129);
+    width: 100%;
+}
+
+.correct-answer{
+    background-color: rgb(169, 247, 169);
+    color: rgb(21, 150, 21);
+    box-shadow: 1px 0px rgb(169, 247, 169);
+    width: 100%;
+}
+
+.qcm-group{
+    margin: 20px 10px 50px;
+    padding: 10px;
+    box-shadow: 4px 1px rgb(186, 186, 247);
+    border-radius: 30px;
+    display: flex;
+    flex-direction: column;
+}

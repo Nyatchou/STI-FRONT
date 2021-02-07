@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
+import {MatRadioModule} from '@angular/material/radio';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
@@ -14,7 +15,6 @@ import { AuthService } from './services/auth.service';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { AddDomainFormComponent } from './components/add-domain-form/add-domain-form.component';
 import { AddCourseFormComponent } from './components/add-course-form/add-course-form.component';
-import { AddCourseSectionFormComponent } from './components/add-course-section-form/add-course-section-form.component';
 import { HomeLayoutComponent } from './components/home-layout/home-layout.component';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { CoursesGroupComponent } from './components/courses-group/courses-group.component';
@@ -23,6 +23,8 @@ import { CarouselComponent } from './components/carousel/carousel.component';
 import { AproposComponent } from './components/apropos/apropos.component';
 import { CoursesPresentPageComponent } from './components/courses-present-page/courses-present-page.component';
 import { AuthInterceptor } from './helpers/interceptor';
+import {MatButtonModule} from '@angular/material/button';
+
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { CoursePresentComponent } from './components/course-present/course-present.component';
 import { AddChapterFormComponent } from './components/add-chapter-form/add-chapter-form.component';
@@ -30,16 +32,18 @@ import { AddPartChapterFormComponent } from './components/add-part-chapter-form/
 import { ChapterPresentPageComponent } from './components/chapter-present-page/chapter-present-page.component';
 import { NotionPresentPageComponent } from './components/notion-present-page/notion-present-page.component';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { NotionEvaluationComponent } from './components/notion-evaluation/notion-evaluation.component';
+import { QcmQuestionComponent } from './components/qcm-question/qcm-question.component';
+import { AuthGuardService } from './helpers/auth-guard.service';
+
 
 const appRoutes: Routes = [
   { path: 'signin', component: LoginComponent },
   { path: 'signup', component: SignUpComponent },
   { path: 'add_domain', component: AddDomainFormComponent },
   { path: 'add_course', component: AddCourseFormComponent },
-  { path: 'add_section', component: AddCourseSectionFormComponent },
   { path: 'add_chapter', component: AddChapterFormComponent },
   { path: 'add_partchap', component: AddPartChapterFormComponent },
-
   {
     path: '',
     component: LayoutComponent,
@@ -50,6 +54,9 @@ const appRoutes: Routes = [
       { path: 'domain/:id', component: CoursesPresentPageComponent },
       { path: 'chapter/:id', component: ChapterPresentPageComponent },
       { path: 'notion/:id', component: NotionPresentPageComponent },
+      { path: 'course/:id', component: CoursePresentComponent },
+      { path: 'questions/notion/:id', component: NotionEvaluationComponent, canActivate: [AuthGuardService] },
+      { path: 'questions', component: QcmQuestionComponent, canActivate: [AuthGuardService] },
 
     ],
   },
@@ -64,7 +71,6 @@ const appRoutes: Routes = [
     DomainPresentGroupComponent,
     AddDomainFormComponent,
     AddCourseFormComponent,
-    AddCourseSectionFormComponent,
     HomeLayoutComponent,
     CoursesGroupComponent,
     CarouselComponent,
@@ -76,24 +82,26 @@ const appRoutes: Routes = [
     AddPartChapterFormComponent,
     ChapterPresentPageComponent,
     NotionPresentPageComponent,
+    NotionEvaluationComponent,
+    QcmQuestionComponent,
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    MatRadioModule,
     FormsModule,
     ReactiveFormsModule,
+    MatButtonModule,
     MatProgressSpinnerModule,
-
     RouterModule.forRoot(appRoutes),
     MDBBootstrapModule.forRoot(),
     MatDatepickerModule,
     MatSidenavModule,
   ],
-  
   providers: [AuthService, {
-    provide: HTTP_INTERCEPTORS, 
-    useClass: AuthInterceptor, 
+    provide: HTTP_INTERCEPTORS,
+    useClass: AuthInterceptor,
     multi: true
   }],
   bootstrap: [AppComponent],

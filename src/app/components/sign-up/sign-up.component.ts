@@ -68,7 +68,6 @@ export class SignUpComponent implements OnInit {
         patternMessage: `Le mot de passe doit contenir uniquement: lettre(s) majuscule(s), lettre(s) minuscule(s), chiffre(s) et caractère(s) spécial(aux)`,
       },
       role: {
-        required: this.signupForm.get('role').hasError('required'),
         requiredMessage: 'Vous devez choisir un sexe',
       },
       // dateNaissance: {
@@ -92,6 +91,8 @@ export class SignUpComponent implements OnInit {
   // }
   submit(): void {
     this.loading = true;
+    const formData = new FormData();
+
     const firstname = this.signupForm.controls.firstname.value;
     const lastname = this.signupForm.controls.lastname.value;
     const email = this.signupForm.controls.email.value;
@@ -99,9 +100,15 @@ export class SignUpComponent implements OnInit {
     const role = this.signupForm.controls.role.value;
     const dateNaissance = this.signupForm.controls.dateNaissance.value;
 
+    formData.append('first_name', firstname);
+    formData.append('last_name', lastname);
+    formData.append('email', email);
+    formData.append('password1', password);
+    formData.append('password2', password);
+    formData.append('role', role);
     this.authService
-      .signUp(firstname, lastname, email, dateNaissance, role, password)
-      .then((res) => {
+      .signUp(formData)
+      .subscribe((res) => {
         this.loading = false;
         this.authService.setUser(firstname, lastname, email, dateNaissance, role);
         this.authService.user.id = res.user_id;
@@ -109,10 +116,11 @@ export class SignUpComponent implements OnInit {
         this.authService.isAuthenticated = true;
 
         this.router.navigate(['/']);
-      })
-      .catch(() => {
+      }, (err) => {
+        console.log(err);
         this.loading = false;
       });
+
   }
 
 }

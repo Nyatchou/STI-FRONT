@@ -20,4 +20,8 @@ export class LayoutComponent implements OnInit {
     this.isUserAuthenticated = this.authService.isAuthenticated;
   }
 
+  logout(): void {
+    this.authService.logout();
+  }
+
 }

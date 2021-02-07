@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CourseTreeComponent } from './course-tree.component';
+import { AddNotionFormComponent } from './add-notion-form.component';
 
-describe('CourseTreeComponent', () => {
-  let component: CourseTreeComponent;
-  let fixture: ComponentFixture<CourseTreeComponent>;
+describe('AddNotionFormComponent', () => {
+  let component: AddNotionFormComponent;
+  let fixture: ComponentFixture<AddNotionFormComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CourseTreeComponent ]
+      declarations: [ AddNotionFormComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CourseTreeComponent);
+    fixture = TestBed.createComponent(AddNotionFormComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

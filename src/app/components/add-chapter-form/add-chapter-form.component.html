@@ -1,53 +1,91 @@
 <div class="background-des">
-    <div class="form-card">
-        <h1>Ajout d'un chapitre à un cours de la plateforme</h1>
-        <form [formGroup]="addChapterForm">
-            <div class="form-group m-t-20 mb-5">
-                <!-- <label for="username">Username</label> -->
-                <!-- <fa-icon [icon]="iconUser"> </fa-icon>  -->
-                <input type="text" formControlName="name" style="height: 50px" class="form-control"
-                    [ngClass]="{'red-border' : addChapterForm.get('name').invalid && addChapterForm.get('name').dirty}"
-                    placeholder="Nom du Domaine" />
-                <div *ngIf="addChapterForm.get('name').invalid && addChapterForm.get('name').dirty" class="error-label">
-                    <div
-                        *ngIf="(addChapterForm.get('name').hasError('pattern') || addChapterForm.get('name').hasError('required')) && addChapterForm.get('name').dirty">
-                        <i class="fa fa-exclamation-circle"></i> Ce champ ne doit pas être vide !
+    <div class="form-container">
+
+        <div class="form-card" style="width: 65%; min-width: 400px;">
+            <h1 style="margin-bottom: 20px">Ajout d'un chapitre à un cours de la plateforme</h1>
+            <div [formGroup]="addChapterForm">
+                <div class="form-group mb-5">
+                    <!-- <label for="username">Username</label> -->
+                    <!-- <fa-icon [icon]="iconUser"> </fa-icon>  -->
+                    <input type="text" formControlName="name" style="height: 50px" class="form-control"
+                        [ngClass]="{'red-border' : addChapterForm.get('name').invalid && addChapterForm.get('name').dirty}"
+                        placeholder="Nom du Domaine" />
+                    <div *ngIf="addChapterForm.get('name').invalid && addChapterForm.get('name').dirty"
+                        class="error-label">
+                        <div
+                            *ngIf="(addChapterForm.get('name').hasError('pattern') || addChapterForm.get('name').hasError('required')) && addChapterForm.get('name').dirty">
+                            <i class="fa fa-exclamation-circle"></i> Ce champ ne doit pas être vide !
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="form-group m-t-20 mb-5">
-                <textarea rows="4" formControlName="textDescription" class="form-control" placeholder="Texte descriptif du chapitre"></textarea>
-            </div>
-
-            <!-- <div class="input-group my-3">
-                <div class="input-group-prepend">
-                    <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
+                <div class="form-group m-t-20 mb-5">
+                    <textarea rows="8" formControlName="textDescription" class="form-control"
+                        placeholder="Texte descriptif du chapitre"></textarea>
+                    <div *ngIf="addChapterForm.get('textDescription').invalid && addChapterForm.get('textDescription').dirty"
+                        class="error-label">
+                        <div
+                            *ngIf="(addChapterForm.get('textDescription').hasError('pattern') || addChapterForm.get('textDescription').hasError('required')) && addChapterForm.get('textDescription').dirty">
+                            <i class="fa fa-exclamation-circle"></i> Ce champ ne doit pas être vide !
+                        </div>
+                    </div>
                 </div>
-                <div class="custom-file">
-                    <input type="file" formControlName="image" class="custom-file-input"
-                        (onchange)="onFileChange($event, 'image')" id="inputGroupFile01"
-                        aria-describedby="inputGroupFileAddon01"
-                        [ngClass]="{'red-border' : addChapterForm.get('image').invalid && addChapterForm.get('image').dirty }">
-
-                    <label class="custom-file-label" for="inputGroupFile01">Choisir une image</label>
+                <div class="form-group mb-5">
+                    <select class="browser-default custom-select" formControlName="course">
+                        <option value="" disabled selected> Selectionnez le cours</option>
+                        <option *ngFor="let course of coursesList" value="course.id">{{course.name}}</option>
+                    </select>
                 </div>
-            </div> -->
-            <div class="form-group mb-5">
-                <input type="file" class="form-control" (change)="onFileChange($event)">
-            </div>
+                <div class="mb-5" *ngFor="let notionForm of notionforms.controls">
+                    <hr />
+                    <h3 style="font-weight: bold; margin-bottom: 20px;">Ajout d'une notion à un chapitre</h3>
+                    <form [formGroup]="notionForm">
+                        <div class="form-group mb-5">
+                            <input type="text" formControlName="title" style="height: 50px" class="form-control"
+                                [ngClass]="{'red-border' : notionForm.get('title').invalid && notionForm.get('title').dirty}"
+                                placeholder="Nom du Domaine" />
+                            <div *ngIf="notionForm.get('title').invalid && notionForm.get('title').dirty"
+                                class="error-label">
+                                <div
+                                    *ngIf="(notionForm.get('title').hasError('pattern') || notionForm.get('title').hasError('required')) && notionForm.get('title').dirty">
+                                    <i class="fa fa-exclamation-circle"></i> Ce champ ne doit pas être vide !
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group mb-5">
+                            <textarea rows="4" formControlName="textContent" class="form-control"
+                                [ngClass]="{'red-border' : notionForm.get('textContent').invalid && notionForm.get('textContent').dirty}"
+                                placeholder="Contenu"></textarea>
 
-            <div class="form-group mb-5">
-                <select class="browser-default custom-select" formControlName="course">
-                    <option value="" disabled selected> Selectionnez le cours</option>
-                    <option *ngFor="let course of coursesList" value="course.id">{{course.name}}</option>
-                </select>
+                            <div *ngIf="notionForm.get('textContent').invalid && notionForm.get('textContent').dirty"
+                                class="error-label">
+                                <div
+                                    *ngIf="(notionForm.get('textContent').hasError('pattern') || notionForm.get('textContent').hasError('required')) && notionForm.get('textContent').dirty">
+                                    <i class="fa fa-exclamation-circle"></i> Ce champ ne doit pas être vide !
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <div class="form-group text-center m-t-20">
+                            <button [disabled]="notionForm.invalid" class="btn btn-blue btn-raised" (click)="submit()">
+                                Valider
+                            </button>
+                        </div> -->
+                    </form>
+                </div>
+                <div class="form-group text-left m-t-40">
+                    <button class="btn btn-rounded-blue" (click)="addNotionForm()">
+                        <i class="fa fa-plus"></i> Ajouter une notion au chapitre
+                    </button>
+                </div>
+                <div class="form-group text-center m-t-40">
+                    <button [disabled]="addChapterForm.invalid" class="btn btn-blue btn-flat" (click)="submit()">
+                        Valider
+                    </button>
+                </div>
             </div>
+        </div>
 
-            <div class="form-group text-center m-t-40">
-                <button [disabled]="addChapterForm.invalid" class="btn btn-blue btn-flat" (click)="submit()">
-                    Valider
-                </button>
-            </div>
-        </form>
+
+
     </div>
+
 </div>

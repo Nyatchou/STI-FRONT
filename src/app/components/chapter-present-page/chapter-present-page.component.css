@@ -2,8 +2,12 @@
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     font-weight: bold;
     text-align: center;
-    font-size: 22px;
+    font-size: 40px;
+    font-style: italic;
+    text-transform: uppercase;
+    text-decoration: underline;
     margin-bottom: 20px;
+    color: rgb(9, 9, 94);
 }
 
 .part-title{
@@ -20,14 +24,18 @@
     word-wrap: break-word;
 }
 
-.card-video-presentation{
-    height: 600px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
 
-}
 
 .card-presentation{
     margin-top: 20px;
+    box-shadow: 3px 0px grey;
+    min-height: 500px;
+    padding: 20px;
+}
+
+.card-present{
+    margin-top: 20px;
+    box-shadow: 3px 3px 2px 2px grey;
+    min-height: 400px;
+    padding: 20px;
 }

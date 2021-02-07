@@ -1,0 +1,25 @@
+<div class="container" *ngIf="questionList.length !== 0">
+    <div class="qcm-group">
+        <div class="radios-group" *ngFor="let qcm of questionList; let i = index">
+            <div [formGroup]="questionsForm.controls[i]">
+                <label for="'groupQuestions'+qcm.id">{{qcm.questionLabel}}</label>
+                <div class="custom-control custom-radio" *ngFor="let option of qcm.options">
+                    <input type="radio" class="custom-control-input" [value]="option.labelProp"
+                        [id]="qcm.id+'-'+option.labelProp" formControlName="valueChecked">
+                    <label
+                        [ngClass]="{'custom-control-label': true, 'correct-answer': option.isCorrectAnswer === 'true', 'bad-answer': option.isCorrectAnswer === 'false'}"
+                        [for]="qcm.id+'-'+option.labelProp">{{option.prop}} <i class="fa fa-check" *ngIf="option.isCorrectAnswer === 'true'" aria-hidden="true"></i>
+                        <i class="fa fa-times" *ngIf="option.isCorrectAnswer === 'false'" aria-hidden="true"></i>
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div>
+            <button class="btn btn-rounded-blue" (click)="submit()">Soumettre</button>
+        </div>
+    </div>
+</div>
+
+<div class="container" style="padding-top: 50px;" *ngIf="questionList.length === 0">
+    <div style="font-size: 30px;text-align: center;"> Aucune question disponible ! </div>
+</div>

@@ -32,4 +32,8 @@
 
 .card-presentation{
     margin-top: 20px;
+    box-shadow: 3px 0px grey;
+    /* border-radius: 10px; */
+    min-height: 500px;
+    padding: 20px;
 }

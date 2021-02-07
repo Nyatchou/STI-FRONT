@@ -1,1 +1,18 @@
-<p>course-present works!</p>
+<div class="row">
+    <div class="col-lg-3 col-md-3 col-sm-4">
+        <div class="left-box">
+            <div class="categ-list-label"> Liste des Chapitres </div>
+            <div class="side-item" *ngFor="let chapter of chaptersList"><a [routerLink]="['/chapter', chapter.id]">
+                    <p class="chapter-link">{{chapter.name}}</p>
+                </a></div>
+        </div>
+    </div>
+    <div class="col-lg-9 col-md-9 col-sm-8">
+        <div class="welcome-text">
+            Bienvenue dans le cours sur <span style="font-style: italic;">{{nameCourse}}</span>
+        </div>
+        <div class="m-text17 mt-4">
+            {{courseDescription}}
+        </div>
+    </div>
+</div>

@@ -1,4 +1,4 @@
-<header class="m-b-70">
+<header>
     <!--Navbar-->
     <mdb-navbar SideClass="navbar navbar-expand-lg bg-light navbar-dark fixed-top"  [containerInside]="true">
 
@@ -29,7 +29,7 @@
                 </li>
 
                 <li class="nav-item m-t-8 m-r-15" *ngIf="isUserAuthenticated">
-                    <button type="button" routerLink="signup" class="btn btn-outline-danger">Déconnexion</button>
+                    <button type="button" class="btn btn-outline-danger" (click)="logout()">Déconnexion</button>
                 </li>
                 <!-- Dropdown -->
             </ul>
@@ -39,7 +39,7 @@
     <!--/.Navbar-->
 </header>
 
-<div style="min-height: 600px;">
+<div class="content">
     <router-outlet></router-outlet>
 </div>
 

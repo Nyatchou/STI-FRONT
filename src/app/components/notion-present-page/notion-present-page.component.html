@@ -1,16 +1,49 @@
-
 <div class="container m-t-20" *ngIf="datasLoaded">
     <div class="row">
         <div class="col-lg-8 col-md-8 col-sm-8">
             <div class="card-presentation">
                 <h2 class="title">
-                   Notion: {{notionDetails.title}}
+                    Notion: {{notionDetails.title}}
                 </h2>
                 <div class="full-text">
                     {{notionDetails.text_content}}
                 </div>
+                <div class="row">
+                    <div class="container">
+                        <h4 class="m-b-15"
+                            style="font-style: italic; font-weight:bold; font-size: 16px; font-family: Montserrat-Bold;">
+                            Document(s) portant sur
+                            <span style="font-style: italic; font-weight: bold;">{{notionDetails.title}}</span>
+                        </h4>
+                        <div class="row" *ngIf="hasDocumentFile">
+                            <div class="col-md-6" *ngFor="let file of notionDetails.files_ressources">
+                                <div *ngIf="file.ressource_type === 'document'">
+                                    <a href="{{file.ressource_file}}">Télécharger </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" *ngIf="!hasDocumentFile">
+                            <div style="height: 50px; margin-left: 20px;">
+                                Aucun document disponible !
+                            </div>
+                        </div>
+
+                        <h4 class="m-b-15"
+                            style="font-style: italic; font-weight:bold; font-size: 16px; font-family: Montserrat-Bold">
+                            Quelques liens que vous pouvez visiter </h4>
+                        <div class="row" *ngIf="hasURLFile">
+                            <div class="col-md-6" *ngFor="let url of notionDetails.urls_ressources">
+                                <a style="font-style: italic; font-weight: bold; color: blue">{{url.url}}</a>
+                            </div>
+                        </div>
+                        <div class="row" *ngIf="!hasURLFile">
+                            <div style="height: 50px; margin-left: 20px;" *ngIf="!hasURLFile">
+                                <p>Aucune url disponible !</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            
         </div>
         <div class="col-lg-4 col-md-4 col-sm-4">
             <div class="card-video-presentation">
@@ -24,33 +57,12 @@
                     </video>
                 </div>
             </div>
-
         </div>
     </div>
-    <div class="row">
-        <div class="container">
-            <h4 class="m-b-15" style="font-style: italic; font-weight:bold; font-size: 16px; font-family: Montserrat-Bold;"> Document(s) portant sur <span
-                    style="font-style: italic; font-weight: bold;">{{notionDetails.title}}</span> </h4>
-            <div class="row">
-                <div class="col-md-6" *ngFor="let file in notionDetails.files_ressources">
-                    <div *ngIf="file.ressource_type === 'document'">
-                        <a href="{{file.ressource_file}}">Télécharger </a>
-                    </div>
-                </div>
-                <div style="height: 50px; margin-left: 20px;" *ngIf="hasDocumentFile" >
-                    Aucun document disponible !
-                </div>
-            </div>
-
-            <h4 class="m-b-15" style="font-style: italic; font-weight:bold; font-size: 16px; font-family: Montserrat-Bold"> Quelques liens que vous pouvez visiter </h4>
-            <div class="row">
-                <div class="col-md-6" *ngFor="let url in notionDetails.urls_ressources">
-                    <a>{{url.url}}</a>
-                </div>
-                <div style="height: 50px; margin-left: 20px;" *ngIf="hasURLFile" >
-                    <p>Aucune url disponible !</p>
-                </div>
-            </div>
+    <div class="row text-center">
+        <div class="mb-5">
+            <a style="font-style: italic; font-size: 24px; font-weight: bold;"
+                [routerLink]="['/questions/notion/', notionId]">Accédez au questionnaire</a>
         </div>
     </div>
 </div>

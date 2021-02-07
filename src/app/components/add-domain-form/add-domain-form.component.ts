@@ -22,7 +22,7 @@ export class AddDomainFormComponent implements OnInit {
     });
   }
 
-  onFileChange(event) {
+  onFileChange(event): void {
     if (event.target.files && event.target.files.length) {
       const [file] = event.target.files;
       // just checking if it is an image, ignore if you want

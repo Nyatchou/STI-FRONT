@@ -1,21 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import {
-  FormBuilder,
-  FormGroup,
-  Validators,
-} from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 
 import { Router } from '@angular/router';
 
-
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
-
   loginForm: FormGroup;
   validations: any;
   showPassword = false;
@@ -24,7 +18,7 @@ export class LoginComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
-    private authService: AuthService,
+    private authService: AuthService
   ) {}
 
   ngOnInit(): void {
@@ -38,7 +32,6 @@ export class LoginComponent implements OnInit {
       email: {
         requiredMessage: 'Ce champ ne doit pas être vide',
         invalidMailMessage: 'Entrez une adresse mail valide',
-
       },
       password: {
         requiredMessage: 'Ce champ ne doit pas être vide',
@@ -51,21 +44,22 @@ export class LoginComponent implements OnInit {
   }
 
   submit(): void {
+    const formData = new FormData();
+    formData.append('email', this.loginForm.controls.email.value);
+    formData.append('password', this.loginForm.controls.password.value);
     this.loading = true;
-    this.authService.login(
-      this.loginForm.controls.email.value,
-      this.loginForm.controls.password.value
-    ).then((response) => {
-      this.loading = false;
-      console.log(localStorage.getItem('access'));
-      localStorage.setItem('token', response.key);
-      this.authService.isAuthenticated = true;
-      this.router.navigate(['/']);
-    }).catch((err) => {
-      this.loading = false;
-    });
+    this.authService.login(formData).subscribe(
+      (res) => {
+        this.loading = false;
+        console.log(localStorage.getItem('access'));
+        localStorage.setItem('token', res.key);
+        this.authService.isAuthenticated = true;
+        this.router.navigate(['/']);
+      },
+      (err) => {
+        this.loading = false;
+        console.log(err);
+      }
+    );
   }
-
-
-
 }

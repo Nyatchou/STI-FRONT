@@ -15,6 +15,7 @@ input {
   padding: 50px;
   box-shadow: 2px 2px 2px 2px rgb(117, 116, 116);
   margin: auto;
+  border-radius: 20px;
   background-color: white;
 }
 

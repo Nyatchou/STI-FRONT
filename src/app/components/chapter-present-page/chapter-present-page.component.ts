@@ -11,12 +11,14 @@ export class ChapterPresentPageComponent implements OnInit {
 
   chapterId: string;
   chapterDetails: any;
+  datasLoaded = false;
   constructor(private adminActionsService: AdminActionsService, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.chapterId = this.activatedRoute.snapshot.paramMap.get('id');
     this.adminActionsService.getExtendChapter(this.chapterId).subscribe((chapter) => {
       this.chapterDetails = chapter;
+      this.datasLoaded = true;
     });
   }
 

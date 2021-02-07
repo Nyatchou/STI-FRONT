@@ -1,28 +1,25 @@
-<div class="container m-t-20">
+<div class="container m-t-20" *ngIf="datasLoaded">
     <div class="row">
         <div class="col-lg-8 col-md-8 col-sm-8">
             <div class="card-presentation">
                 <h2 class="chapter-title">
-                    Azerriuirioiortkrrk
+                    {{chapterDetails.name}}
                 </h2>
                 <div class="full-text">
-                sfjljlhjlhjhjkshjkhfjkhgjkg hdjkhjkfgjk dfhgjkh dgjkhdgjkhgjkdhjkhj  dkhjkhdfjk fdhjkhjhdjkhjkbgdjkbgdjkbjhkbjkb djkbghbghdbkbgghkbgdbkbgkdbghkbhddbdghdbhbghbfhbdhkbghkbdbgdhkbhkbgkbdjbdbdjkbjkbgjdbgjbdjkbj
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-4 col-md-4 col-sm-4">
-            <div class="card-video-presentation">
-                <h2 class="chapter-title">
-                    Video descriptive
-                </h2>
-                <div style="box-shadow: 3px 3px 3px 3px grey;">
-                    <video height="100%" width="100%"  controls>
-                        <source src="movie.mp4" type="video/mp4">
-                      Your browser does not support the video tag.
-                    </video> 
+                    {{chapterDetails.text_description}}
                 </div>
             </div>
 
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-4">
+            <div class="card-present">
+                <h3 class="part-title">Notions relatives au chapitre</h3>
+                <ul>
+                    <li *ngFor="let notion of chapterDetails.notions_chapter">
+                        <a style="font-family: Montserrat-Bold; font-style: italic; font-size: 20px; text-decoration: underline;" [routerLink]="['/notion', notion.id]">{{notion.title}}</a>
+                    </li>
+                </ul>
+            </div>
         </div>
     </div>
 </div>
