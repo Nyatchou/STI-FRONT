@@ -109,9 +109,11 @@ export class SignUpComponent implements OnInit {
     this.authService
       .signUp(formData)
       .subscribe((res) => {
+        console.log(res);
         this.loading = false;
-        this.authService.setUser(firstname, lastname, email, dateNaissance, role);
-        this.authService.user.id = res.user_id;
+        this.authService.getUser().subscribe((data) => {
+          this.authService.setUser(data.first_name, data.last_name, data.email, data.date_of_birth, data.role, data.id);
+        });
         localStorage.setItem('token', res.key);
         this.authService.isAuthenticated = true;
 

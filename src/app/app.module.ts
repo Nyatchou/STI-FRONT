@@ -1,7 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
-import {MatRadioModule} from '@angular/material/radio';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
@@ -23,7 +22,6 @@ import { CarouselComponent } from './components/carousel/carousel.component';
 import { AproposComponent } from './components/apropos/apropos.component';
 import { CoursesPresentPageComponent } from './components/courses-present-page/courses-present-page.component';
 import { AuthInterceptor } from './helpers/interceptor';
-import {MatButtonModule} from '@angular/material/button';
 
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { CoursePresentComponent } from './components/course-present/course-present.component';
@@ -35,6 +33,7 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { NotionEvaluationComponent } from './components/notion-evaluation/notion-evaluation.component';
 import { QcmQuestionComponent } from './components/qcm-question/qcm-question.component';
 import { AuthGuardService } from './helpers/auth-guard.service';
+import { CourseEvaluationComponent } from './components/course-evaluation/course-evaluation.component';
 
 
 const appRoutes: Routes = [
@@ -56,7 +55,7 @@ const appRoutes: Routes = [
       { path: 'notion/:id', component: NotionPresentPageComponent },
       { path: 'course/:id', component: CoursePresentComponent },
       { path: 'questions/notion/:id', component: NotionEvaluationComponent, canActivate: [AuthGuardService] },
-      { path: 'questions', component: QcmQuestionComponent, canActivate: [AuthGuardService] },
+      { path: 'question/course/:id', component: QcmQuestionComponent, canActivate: [AuthGuardService] },
 
     ],
   },
@@ -84,15 +83,14 @@ const appRoutes: Routes = [
     NotionPresentPageComponent,
     NotionEvaluationComponent,
     QcmQuestionComponent,
+    CourseEvaluationComponent,
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    MatRadioModule,
     FormsModule,
     ReactiveFormsModule,
-    MatButtonModule,
     MatProgressSpinnerModule,
     RouterModule.forRoot(appRoutes),
     MDBBootstrapModule.forRoot(),

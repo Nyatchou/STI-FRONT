@@ -1,12 +1,44 @@
-<div class="radios-group">
-  <label class="custom-control-label" for="groupQuestions">{{question}}</label>
-
-  <div class="custom-control custom-radio" *ngFor="let option of options">
-    <input type="radio" class="custom-control-input" [value]="option.prop" [(ngModel)]="selectedAnswer"
-      [id]="option.labelProp" name="groupQuestions">
-    <label class="custom-control-label" [for]="option.labelProp">{{option.prop}}</label>
+<div class="container" style="padding-top: 50px;" *ngIf="!questionId">
+  <div style="font-size: 30px;text-align: center;"> Aucune question disponible ! </div>
+</div>
+<div class="container" *ngIf="questionId">
+  <h1 style="font-weight: bold"> Questionnaire sur le cours </h1>
+  <div class="question-box" *ngIf="!questionStarted">
+    <button class="btn btn-outline-primary" style="float: right;" [disabled]="optionRemoved"
+    (click)="startTimer()">Commencer
+  </button>
   </div>
-  <div>
-    <button class="btn btn-rounded-blue">Soumettre</button>
+  <div class="question-box" *ngIf="questionStarted">
+    <div>
+      <button class="btn btn-outline-primary" style="float: right;" [disabled]="optionRemoved || submitted"
+        (click)="makeHelp()">Aide
+      </button>
+    </div>
+    <div class="radios-group mb-5">
+      <label for="groupQuestions">{{question}}</label>
+
+      <div class="custom-control custom-radio" *ngFor="let option of options">
+        <input type="radio" [disabled]="submitted || optionRemoved === option.labelProp" class="custom-control-input" [value]="option.labelProp" [(ngModel)]="selectedAnswer"
+          [id]="option.labelProp" name="groupQuestions">
+        <label 
+        [ngClass]="{'custom-control-label': true, 
+          'correct-answer': option.isCorrectOption && submitted, 
+          'bad-answer': !option.isCorrectOption && selectedAnswer === option.labelProp && submitted,
+          'line': option.labelProp === optionRemoved
+        }" [for]="option.labelProp">{{option.prop}}
+          <i class="fa fa-check" *ngIf="option.isCorrectOption && submitted" aria-hidden="true"></i>
+          <i class="fa fa-times" *ngIf="!option.isCorrectOption && selectedAnswer === option.labelProp && submitted" aria-hidden="true"></i>
+        </label>
+      </div>
+    </div>
+    <div class="row text-center">
+      <div class="col-md-6"> <button class="btn btn-rounded-blue" [disabled]="!selectedAnswer || submitted"
+          (click)="submitAnswer()">Soumettre</button>
+      </div>
+      <div class="col-md-6"> <button class="btn btn-rounded-blue" [disabled]="!selectedAnswer || !submitted"
+          (click)="getNewQuestion()">Question Suivante</button>
+      </div>
+
+    </div>
   </div>
 </div>

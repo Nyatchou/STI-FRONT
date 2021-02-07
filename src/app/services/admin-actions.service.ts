@@ -69,11 +69,19 @@ export class AdminActionsService {
     return this.http.get<any>(URLS.GET_QUESTIONS_COURSE + courseId);
   }
 
+  getQuestionCourse(courseId: string): Observable<any> {
+    return this.http.get<any>(URLS.GET_QUESTION_COURSE + courseId);
+  }
+
   getQuestionsNotion(notionId: string): Observable<any> {
     return this.http.get<any>(URLS.GET_QUESTIONS_NOTION + notionId);
   }
 
   createQuestionAnswer(formData: FormData): Observable<any> {
     return this.http.post<any>(URLS.CREATE_QUESTION_ANSWER, formData);
+  }
+
+  createQuestionAnswerN(formDict): Observable<any> {
+    return this.http.post<any>(URLS.CREATE_QUESTION_ANSWER, formDict);
   }
 }

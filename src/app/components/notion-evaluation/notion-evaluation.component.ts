@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { AdminActionsService } from 'src/app/services/admin-actions.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-notion-evaluation',
@@ -17,13 +18,19 @@ export class NotionEvaluationComponent implements OnInit {
   answerList = new Array<any>();
   // selectedAnswers = new Array<any>();
   questionsForm: FormArray;
+  submitted = false;
   constructor(
     private adminActionsService: AdminActionsService,
     private activatedRoute: ActivatedRoute,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private authService: AuthService
   ) {}
 
   ngOnInit(): void {
+    this.authService.getUser().subscribe((data) => {
+      this.authService.setUser(data.first_name, data.last_name, data.email, data.date_of_birth, data.role, data.id);
+      console.log(this.authService.user.id);
+    });
     this.questionsForm = new FormArray([]);
     const notionId = this.activatedRoute.snapshot.paramMap.get('id');
     this.adminActionsService
@@ -83,6 +90,7 @@ export class NotionEvaluationComponent implements OnInit {
       }
     }
     this.makeCorrectionAndPost();
+    this.submitted = true;
   }
 
   reinitForm(): void {
@@ -99,6 +107,8 @@ export class NotionEvaluationComponent implements OnInit {
       const formData = new FormData();
       formData.append('question', this.questionList[ind].id);
       formData.append('answer', valueChecked);
+      formData.append('user', this.authService.user.id);
+
       this.adminActionsService.createQuestionAnswer(formData).subscribe(
         (res) => console.log(res),
         (err) => console.log(err)

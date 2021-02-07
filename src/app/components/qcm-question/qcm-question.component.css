@@ -11,3 +11,38 @@
     border-radius: 20px;
     padding: 10px 20px 10px 20px;
 }
+
+.fa-check{
+    color: rgb(21, 150, 21);
+}
+
+.fa-times{
+    color: rgb(211, 19, 19);
+}
+
+.bad-answer{
+    background-color: rgb(247, 129, 129);
+    color: rgb(211, 19, 19);
+    box-shadow: 1px 0px rgb(247, 129, 129);
+    width: 100%;
+}
+
+.question-box{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-radius: 30px;
+    box-shadow: 4px 0px 2px grey;
+    padding: 10px;
+    min-height: 500px;
+}
+.line{
+    text-decoration: line-through;
+}
+
+.correct-answer{
+    background-color: rgb(169, 247, 169);
+    color: rgb(21, 150, 21);
+    box-shadow: 1px 0px rgb(169, 247, 169);
+    width: 100%;
+}

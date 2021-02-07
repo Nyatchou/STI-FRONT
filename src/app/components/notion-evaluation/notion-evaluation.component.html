@@ -15,7 +15,7 @@
             </div>
         </div>
         <div>
-            <button class="btn btn-rounded-blue" (click)="submit()">Soumettre</button>
+            <button class="btn btn-rounded-blue" [disabled]="submitted" (click)="submit()">Soumettre</button>
         </div>
     </div>
 </div>

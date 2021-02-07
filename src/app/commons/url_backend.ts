@@ -25,3 +25,4 @@ export const GET_DOMAIN_EXTENDED = HOST_URL + '/api/domains/';
 export const GET_QUESTIONS_COURSE = HOST_URL + '/api/questions/course/';
 export const GET_QUESTIONS_NOTION = HOST_URL + '/api/questions/notion/';
 export const CREATE_QUESTION_ANSWER = HOST_URL + '/api/question/answer/create/';
+export const GET_QUESTION_COURSE = HOST_URL + '/api/question/course/';

@@ -25,14 +25,19 @@ export class AuthService {
     return this.http.post<any>(URLS.SIGNUP_URL, formData);
   }
 
+  getUser(): Observable<any> {
+    return this.http.get<any>(URLS.GET_USER_URL);
+  }
+
   setUser(
     firstname: string,
     lastname: string,
     mail: string,
     dateNaissance: string,
-    role: string
+    role: string,
+    id?: string
   ): void {
-    this.user = new User(firstname, lastname, mail, dateNaissance, role);
+    this.user = new User(firstname, lastname, mail, dateNaissance, role, id);
   }
 
   logout(): void {

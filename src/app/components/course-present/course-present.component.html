@@ -7,12 +7,17 @@
                 </a></div>
         </div>
     </div>
-    <div class="col-lg-9 col-md-9 col-sm-8">
+    <div style="display: flex; flex-direction: column;" class="col-lg-9 col-md-9 col-sm-8">
         <div class="welcome-text">
             Bienvenue dans le cours sur <span style="font-style: italic;">{{nameCourse}}</span>
         </div>
-        <div class="m-text17 mt-4">
+        <div class="m-text17 mb-5">
             {{courseDescription}}
+        </div>
+
+        <div>
+            <a style="font-style: italic; font-size: 24px; font-weight: bold;"
+                [routerLink]="['/question/course/', courseId]">Accédez au questionnaire relatif à ce cours</a>
         </div>
     </div>
 </div>
